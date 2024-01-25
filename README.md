@@ -14,8 +14,8 @@
 #Unit Testing (Not Available)
 
 #Account Information:
-To login, you may use these sample accounts:
+To login, you may use these sample account:
 
-Email: johndoe@email.com
-Password: johndoe
+- Email: johndoe@email.com
+- Password: johndoe
 Alternatively, you can register your own account by clicking on the "Register" option within the app.
