@@ -1,8 +1,10 @@
+// AllProducts.js
 import React, { useState, useEffect } from 'react';
-import { Card, CardGroup } from 'react-bootstrap';
+import ProductView from './ProductView'; // Adjust the import path based on your project structure
 
-export default function FeaturedProducts() {
+export default function AllProducts() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +19,8 @@ export default function FeaturedProducts() {
       } catch (error) {
         console.error('Error fetching data:', error.message);
         // Handle error (e.g., show a friendly message to the user)
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -24,20 +28,20 @@ export default function FeaturedProducts() {
   }, []);
 
   return (
-    <>
+    <div className="container my-3">
       <h2 className="text-center my-3">All Products</h2>
-      <CardGroup className="justify-content-center mb-3">
-        {products.map(product => (
-          <Card key={product._id}>
-            {/* Product content goes here */}
-            <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>{product.description}</Card.Text>
-              {/* Add more product details as needed */}
-            </Card.Body>
-          </Card>
-        ))}
-      </CardGroup>
-    </>
+
+      {loading ? (
+        <div className="text-center">Loading...</div>
+      ) : (
+        <div className="row justify-content-center">
+          {products.map(product => (
+            <div key={product._id} className="col-md-4 mb-3">
+              <ProductView product={product} />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

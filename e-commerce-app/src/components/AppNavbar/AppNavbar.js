@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container'
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
+import UserContext from '../../userContext';
+import './AppNavbar.css'
 
-export default function Navbar() {
+export default function AppNavbar() {
 
 	const { user } = useContext(UserContext);
 
@@ -12,50 +15,23 @@ export default function Navbar() {
 	const userId = user?.id;
 
 	return (
-		<Navbar bg="light">
+		<Navbar bg="light" expand="lg" className='Navbar' style={{ border: "1px solid black" }}>
 			<Container fluid>
 				<Navbar.Brand as={Link} to="/">
-					{/*add brand name here*/}
+					My E Commerce App
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="mr-auto">
+					<Nav className="mr-auto nav-menu">
 						<Nav.Link as={NavLink} to="/">
 							Home
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/">
-							Products
+						<Nav.Link as={NavLink} to="/products/all">
+              				Products
+            			</Nav.Link>
+            			<Nav.Link as={NavLink} to="/login">
+							Login
 						</Nav.Link>
-						
-						{isAdmin && (
-							<Nav.Link as={NavLink} to="/">
-								Add Product
-							</Nav.Link>						
-						)}
-
-						{userId ? (
-							<>
-								{!isAdmin && (
-									<>
-										<Nav.Link as={NavLink} to="/">
-											Profile
-										</Nav.Link>
-									</>
-								)}
-								<Nav.Link as={NavLink} to="/">
-									Logout
-								</Nav.Link>
-							</>
-						) : (
-							<>
-								<Nav.Link as={NavLink} to="/">
-									Register
-								</Nav.Link>
-								<Nav.Link as={NavLink} to="/">
-									Login
-								</Nav.Link>
-							</>
-						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
