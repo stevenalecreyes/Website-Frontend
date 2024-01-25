@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 import UserContext from '../userContext';
@@ -8,21 +8,16 @@ import './Login.css';
 
 export default function Login() {
   const { user, setUser } = useContext(UserContext);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (email !== "" && password !== "") {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
+    setIsActive(email !== "" && password !== "");
   }, [email, password]);
 
-  function authenticate(e) {
+  const authenticate = (e) => {
     e.preventDefault();
 
     fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
@@ -31,8 +26,8 @@ export default function Login() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: email,
-        password: password
+        email,
+        password
       })
     })
       .then(res => res.json())
@@ -56,7 +51,7 @@ export default function Login() {
 
     setEmail('');
     setPassword('');
-  }
+  };
 
   const retrieveUserDetails = (token) => {
     fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
@@ -75,29 +70,48 @@ export default function Login() {
       .catch(error => {
         console.error('Error retrieving user details:', error);
       });
-  }
+  };
 
   return (
     (user && user.id !== null) ? <Navigate to="/products" /> :
       <Container className="login-container">
         <Row className="justify-content-md-center my-5">
           <Col xs={12} md={6}>
-            <Form onSubmit={(e) => authenticate(e)}>
+            <Form onSubmit={authenticate}>
               <h1 className="text-center mb-4">Login</h1>
 
               {error && <Alert variant="danger" className="mb-4">{error}</Alert>}
 
               <Form.Group controlId="userEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </Form.Group>
 
               <Form.Group controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
               </Form.Group>
 
-              {isActive ? <Button variant="primary" type="submit" id="submitBtn" block>Submit</Button> : <Button variant="danger" type="submit" id="submitBtn" disabled block>Submit</Button>}
+              {isActive ?
+                <Button variant="primary" type="submit" id="submitBtn" block>
+                  Submit
+                </Button> :
+                <Button variant="danger" type="submit" id="submitBtn" disabled block>
+                  Submit
+                </Button>
+              }
             </Form>
           </Col>
         </Row>
