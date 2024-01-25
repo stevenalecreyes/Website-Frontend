@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Alert } from "react-bootstrap";
-import AppNavbar from "../components/AppNavbar/AppNavbar";
 
 export default function Home({ error }) {
   return (

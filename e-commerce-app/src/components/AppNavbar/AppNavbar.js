@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container'
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
@@ -10,8 +10,6 @@ export default function AppNavbar() {
 
 	const { user } = useContext(UserContext);
 
-
-	const isAdmin =  user?.isAdmin || false;
 	const userId = user?.id;
 
 	return (
