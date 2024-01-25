@@ -10,4 +10,4 @@ export default function Logout() {
   }, [unsetUser]);
 
   return <Navigate to="/login" />;
-}
+};
