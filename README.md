@@ -1,12 +1,16 @@
-# Website-Frontend
+Opening the E-Commerce App
+
 Installation:
-1. Clone the repository: git clone https://github.com/stevenalecreyes/Website-Frontend.git
-2. Navigate to the project directory: cd Website-Frontend/e-commerce-app
+
+1. Open Git Bash terminal.
+2. Navigate to e-commerce-app: cd path/to/e-commerce-app
 3. Install Dependencies: npm install
+4. Start the app: npm start
 
-Usage:
-[Instructions on how to run and use the application]:
-npm start
+Running the E-Commerce App API
 
+1. To run the API, open Git Bash terminal inside the e-commerce-app-api folder.
+2. Install Dependencies: npm install
+3. Start the API: nodemon index.js
 
-
+Unit Testing (Not Available)
