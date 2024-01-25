@@ -6,6 +6,9 @@ import AppNavbar from './components/AppNavbar/AppNavbar';
 import { UserProvider } from './userContext';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Products from './pages/Products';
+import Logout from './pages/Logout';
+import Register from './pages/Register';
 
 function App() {
 
@@ -64,6 +67,9 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} /> 
             <Route path='/login' element={<Login />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/logout' element={<Logout />} />
+            <Route path='/register' element={<Register />} />
           </Routes>
         </Container>
       </Router>
