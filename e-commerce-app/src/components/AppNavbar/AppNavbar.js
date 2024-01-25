@@ -14,27 +14,24 @@ export default function AppNavbar() {
 
 	return (
 		<Navbar bg="light" expand="lg" className='Navbar' style={{ border: "1px solid black" }}>
-			<Container fluid>
-				<Navbar.Brand as={Link} to="/">
-					My E Commerce App
+			<Navbar.Brand as={Link} to="/" className="brand">
+					GameHaven
 				</Navbar.Brand>
+			<Container fluid>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="mr-auto nav-menu">
 						<Nav.Link as={NavLink} to="/">
 							Home
 						</Nav.Link>
+						<Nav.Link as={NavLink} to="/products">
+              					Products
+           				</Nav.Link>
       
             			{userId ? (
-            			<>
-            				<Nav.Link as={NavLink} to="/products">
-              					Products
-            				</Nav.Link>
-
                   			<Nav.Link as={NavLink} to="/logout">
                     			Logout
                   			</Nav.Link>
-                  		</>
   
             			) : (
             			<>

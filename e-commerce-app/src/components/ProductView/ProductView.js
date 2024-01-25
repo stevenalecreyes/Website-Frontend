@@ -27,7 +27,6 @@ export default function ProductView() {
 
   const AllProducts = () => (
     <div className="container my-3">
-      <h2 className="text-center my-3">All Products</h2>
 
       {loading ? (
         <div className="text-center">Loading...</div>
@@ -47,8 +46,7 @@ export default function ProductView() {
     <div className="product-view">
       <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      {/* Add more details as needed */}
+      <p>Price: P{product.price}</p>
     </div>
   );
 
